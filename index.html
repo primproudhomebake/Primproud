@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>พริ้มพราว โฮมเบค | สั่งเค้กออนไลน์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --pink-bg: #fff0f3;
+            --pink-card: #ffffff;
+            --pink-primary: #ff6b8b;
+            --pink-dark: #d84365;
+            --pink-border: #ffccd5;
+            --text-color: #5a4a4b;
+            --line-green: #06c755;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--pink-bg);
+            background-image: radial-gradient(#ffb3c1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            margin: 0;
+            padding: 20px 10px;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu-container {
+            width: 100%;
+            max-width: 580px;
+            background: var(--pink-card);
+            border-radius: 28px;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.15);
+            padding: 25px 20px;
+            box-sizing: border-box;
+            border: 3px solid var(--pink-border);
+        }
+
+        .header-title {
+            text-align: center;
+            color: var(--pink-dark);
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .header-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-box {
+            background: #fff9fa;
+            border: 2px solid var(--pink-border);
+            border-radius: 20px;
+            padding: 18px 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #4a3b3c;
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-family: 'Prompt', sans-serif;
+            border: 2px solid var(--pink-border);
+            border-radius: 16px;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s;
+            background-color: #ffffff;
+            color: var(--text-color);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--pink-primary);
+            box-shadow: 0 0 8px rgba(255, 107, 139, 0.3);
+        }
+
+        #address_group {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .price-box {
+            background-color: #fff0f5;
+            border: 2px solid var(--pink-primary);
+            border-radius: 18px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .price-title {
+            font-size: 16px;
+            color: var(--pink-dark);
+        }
+
+        .price-amount {
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--pink-primary);
+            margin-top: 5px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--pink-primary);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(255, 107, 139, 0.4);
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--pink-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .links-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-link {
+            flex: 1;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 14px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-line { background-color: var(--line-green); }
+        .btn-maps { background-color: #ea4335; }
+
+        .payment-info {
+            background-color: #f8f9fa;
+            border-radius: 14px;
+            padding: 12px 15px;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--line-green);
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container">
+    <div class="header-title">💖 พริ้มพราว โฮมเบค 💖</div>
+    <div class="header-subtitle">Cake • Sweet Moment • Made with Love</div>
+
+    <form id="cakeOrderForm">
+        
+        <!-- 1. เลือกขนาดเค้ก -->
+        <div class="section-box">
+            <div class="section-title">1. เลือกขนาดเค้ก 🎂</div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="cake_size">ขนาดเค้ก *</label>
+                <select id="cake_size" name="cake_size" required onchange="calcPrice()">
+                    <option value="" data-price="0">-- กรุณาเลือกขนาดเค้ก --</option>
+                    <option value="ครึ่งปอนด์ (290 บาท)" data-price="290">ครึ่งปอนด์ (290 บาท)</option>
+                    <option value="1 ปอนด์ (490 บาท)" data-price="490">1 ปอนด์ (490 บาท)</option>
+                    <option value="2 ปอนด์ (650 บาท)" data-price="650">2 ปอนด์ (650 บาท)</option>
+                    <option value="3 ปอนด์ (850 บาท)" data-price="850">3 ปอนด์ (850 บาท)</option>
+                    <option value="4 ปอนด์ (1,050 บาท)" data-price="1050">4 ปอนด์ (1,050 บาท)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 2. เลือกรสชาติเนื้อเค้ก -->
+        <div class="section-box">
+            <div class="section-title">2. เลือกรสชาติเนื้อเค้ก 🍰</div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="cake_flavor">รสชาติเนื้อเค้ก *</label>
+                <select id="cake_flavor" name="cake_flavor" required>
+                    <option value="">-- กรุณาเลือกรสชาติเนื้อเค้ก --</option>
+                    <option value="วนิลา">วนิลา</option>
+                    <option value="ช็อกโกแลต">ช็อกโกแลต</option>
+                    <option value="เรดเวลเวท">เรดเวลเวท</option>
+                    <option value="ชาเขียว">ชาเขียว</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 3. เลือกไส้เค้ก -->
+        <div class="section-box">
+            <div class="section-title">3. เลือกไส้เค้ก 🍓</div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="cake_filling">ไส้เค้ก *</label>
+                <select id="cake_filling" name="cake_filling" required onchange="calcPrice()">
+                    <option value="" data-extra-price="0">-- กรุณาเลือกไส้เค้ก --</option>
+                    <optgroup label="ไส้ปกติ">
+                        <option value="ไส้สตรอว์เบอร์รี" data-extra-price="0">สตรอว์เบอร์รี</option>
+                        <option value="ไส้บลูเบอร์รี" data-extra-price="0">บลูเบอร์รี</option>
+                        <option value="ไส้มิกซ์เบอร์รี" data-extra-price="0">มิกซ์เบอร์รี</option>
+                        <option value="ไส้ส้ม" data-extra-price="0">ส้ม</option>
+                    </optgroup>
+                    <optgroup label="ไส้พิเศษ (+เพิ่ม)">
+                        <option value="ไส้ช็อกโกแลตหน้านิ่ม (+30 บาท)" data-extra-price="30">ช็อกโกแลตหน้านิ่ม (+30 บาท)</option>
+                        <option value="ไส้ส้มหน้านิ่ม (+30 บาท)" data-extra-price="30">ส้มหน้านิ่ม (+30 บาท)</option>
+                        <option value="ไส้มะพร้าว (+30 บาท)" data-extra-price="30">มะพร้าว (+30 บาท)</option>
+                        <option value="ไส้บิสคอฟ (+50 บาท)" data-extra-price="50">บิสคอฟ (+50 บาท)</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+
+        <!-- 4. รายละเอียดการสั่งซื้อ -->
+        <div class="section-box">
+            <div class="section-title">4. รายละเอียดการสั่งซื้อ 📝</div>
+            
+            <div class="form-group">
+                <label for="cake_text">ข้อความเขียนบนหน้าเค้ก</label>
+                <input type="text" id="cake_text" name="cake_text" placeholder="เช่น Happy Birthday Plug">
+            </div>
+
+            <div class="form-group">
+                <label for="customer_name">ชื่อผู้สั่ง *</label>
+                <input type="text" id="customer_name" name="customer_name" placeholder="ชื่อ-นามสกุล หรือชื่อเล่น" required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer_phone">เบอร์โทรศัพท์ *</label>
+                <input type="text" id="customer_phone" name="customer_phone" placeholder="08X-XXX-XXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pickup_date">วันที่รับเค้ก *</label>
+                <input type="text" id="pickup_date" name="pickup_date" placeholder="เช่น 25 ธันวาคม 2569" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pickup_time">เวลารับเค้ก *</label>
+                <input type="text" id="pickup_time" name="pickup_time" placeholder="เช่น 14:30 น." required>
+            </div>
+
+            <div class="form-group">
+                <label for="pickup_location">รูปแบบการรับสินค้า / การจัดส่ง *</label>
+                <select id="pickup_location" name="pickup_location" required onchange="toggleDeliveryAddress()">
+                    <option value="">-- กรุณาเลือกวิธีการรับเค้ก --</option>
+                    <option value="มารับเองที่ร้าน">📍 มารับเองที่ร้าน (ฟรี)</option>
+                    <option value="จัดส่งผ่าน Grab / LINE MAN">🛵 จัดส่งผ่าน Grab / LINE MAN (คิดค่าส่งตามระยะทาง เริ่ม 50 บาท)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="address_group" style="margin-bottom: 0;">
+                <label for="delivery_address">ที่อยู่สำหรับจัดส่ง *</label>
+                <textarea id="delivery_address" name="delivery_address" rows="2" placeholder="ระบุบ้านเลขที่ ซอย ถนน แขวง/ตำบล หรือจุดสังเกต..."></textarea>
+            </div>
+        </div>
+
+        <div class="price-box">
+            <div class="price-title">ราคารวม (โดยประมาณ)</div>
+            <div class="price-amount" id="total_price_display">0 บาท</div>
+            <input type="hidden" id="total_price" name="total_price" value="0 บาท">
+        </div>
+
+        <div class="payment-info">
+            💬 <b>หมายเหตุ:</b> สั่งล่วงหน้าอย่างน้อย 1 วัน | ค่าจัดส่งคิดตามระยะทางจริง | หลังกดสั่งซื้อ ระบบจะพาท่านไปยัง LINE ร้านเพื่อชำระเงินนะคะ
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">ยืนยันการสั่งซื้อและชำระเงิน</button>
+    </form>
+
+    <div class="links-group">
+        <a href="https://line.me/R/ti/p/@503svnti" target="_blank" class="btn-link btn-line">💬 LINE ร้าน</a>
+        <a href="https://maps.app.goo.gl/Ub7YGvHKUUb3VSjL7?g_st=ac" target="_blank" class="btn-link btn-maps">📍 นำทาง Google Maps</a>
+    </div>
+</div>
+
+<script>
+    (function(){
+        emailjs.init("sAapG_G-3cWalFQMf");
+    })();
+
+    function calcPrice() {
+        var sizeSelect = document.getElementById("cake_size");
+        var selectedSize = sizeSelect.options[sizeSelect.selectedIndex];
+        var basePrice = parseInt(selectedSize.getAttribute("data-price")) || 0;
+
+        var fillingSelect = document.getElementById("cake_filling");
+        var selectedFilling = fillingSelect.options[fillingSelect.selectedIndex];
+        var extraPrice = parseInt(selectedFilling.getAttribute("data-extra-price")) || 0;
+
+        var totalPrice = basePrice + extraPrice;
+        
+        if (basePrice > 0) {
+            document.getElementById("total_price_display").innerText = totalPrice + " บาท";
+            document.getElementById("total_price").value = totalPrice + " บาท";
+        } else {
+            document.getElementById("total_price_display").innerText = "0 บาท";
+            document.getElementById("total_price").value = "0 บาท";
+        }
+    }
+
+    function toggleDeliveryAddress() {
+        var locationSelect = document.getElementById("pickup_location");
+        var addressGroup = document.getElementById("address_group");
+        var addressInput = document.getElementById("delivery_address");
+
+        if (locationSelect.value === "จัดส่งผ่าน Grab / LINE MAN") {
+            addressGroup.style.display = "block";
+            addressInput.required = true;
+        } else {
+            addressGroup.style.display = "none";
+            addressInput.required = false;
+            addressInput.value = "";
+        }
+    }
+
+    document.getElementById('cakeOrderForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var btn = document.getElementById('btnSubmit');
+        btn.disabled = true;
+        btn.innerText = 'กำลังส่งออเดอร์...';
+
+        emailjs.sendForm('Primproud2310', 'template_mjvsnfb', this)
+            .then(function() {
+                alert('✨ บันทึกรายการสั่งซื้อเรียบร้อยแล้วค่ะ!\n\nระบบกำลังนำท่านไปยัง LINE ร้านพริ้มพราว โฮมเบค เพื่อชำระเงินนะคะ');
+                window.location.href = "https://line.me/R/ti/p/@503svnti";
+            }, function(error) {
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง หรือติดต่อทาง LINE โดยตรงนะคะ');
+                btn.disabled = false;
+                btn.innerText = 'ยืนยันการสั่งซื้อและชำระเงิน';
+            });
+    });
+</script>
+
+</body>
+</html>
